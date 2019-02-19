@@ -1,0 +1,35 @@
+/* mixin for multiline */
+@mixin multiLineEllipsis($lineHeight, $lineCount, $bgColor){
+    overflow: hidden;
+    position: relative;
+    line-height: $lineHeight;
+    max-height: $lineHeight * $lineCount; 
+    text-align: center;
+    margin-right: -1em;
+    padding-right: 1em;
+    &:before {
+      content: '...';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      width: 1em;
+      height: 1em;
+      margin-top: 0.2em;
+      background: $bgColor;
+    }
+  }
+
+    // usage of mixin
+  p{
+    font-size: 18px;
+    letter-spacing: 0.1px;
+    text-align: center;
+    color: #000;
+    width: 250px;
+    @include multiLineEllipsis($lineHeight: 20px, $lineCount: 2, $bgColor: white);
+  }
